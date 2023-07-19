@@ -4,11 +4,14 @@ pipeline {
             label 'maven-agent'
         }
     }
-
-    stages {
-        stage('Clone the Code') {
+    environment{
+    PATH = "/opt/apache-maven-3.9.3/bin:$PATH"
+    }
+      stages {
+      stage('build'){
+        
             steps {
-                git branch: 'main', url: 'https://github.com/shiva805504/devops-project.git'
+                sh 'mvn clean deploy'
             }
         }
     }
