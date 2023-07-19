@@ -1,0 +1,16 @@
+pipeline {
+    agent{
+        node{
+            label 'maven-agent'
+        }
+    }
+
+    stages {
+        stage('Clone the Code') {
+            steps {
+                git branch: 'main', url: 'https://github.com/shiva805504/devops-project.git'
+            }
+        }
+    }
+}
+
