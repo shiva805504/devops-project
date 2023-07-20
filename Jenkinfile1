@@ -1,5 +1,7 @@
 
 def registry = 'https://siva02.jfrog.io'
+def imageName = 'siva02.jfrog.io/docker01-docker-local/dev-project'
+def version   = '2.1.2'
 
 pipeline {
     agent{
@@ -72,6 +74,27 @@ script{
                      server.publishBuildInfo(buildInfo)
                      echo '<--------------- Jar Publish Ended --------------->'
 
+            }
+        }
+    }
+    stage(" Docker Build ") {
+      steps {
+        script {
+           echo '<--------------- Docker Build Started --------------->'
+           app = docker.build(imageName+":"+version)
+           echo '<--------------- Docker Build Ends --------------->'
+        }
+      }
+    }
+
+            stage (" Docker Publish "){
+        steps {
+            script {
+               echo '<--------------- Docker Publish Started --------------->'
+                docker.withRegistry(registry, 'artifactory_token'){
+                    app.push()
+                }
+               echo '<--------------- Docker Publish Ended --------------->'
             }
         }
     }
