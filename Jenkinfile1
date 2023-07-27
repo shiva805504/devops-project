@@ -101,7 +101,7 @@ script{
     stage (" Deployment "){
     steps{
     script{
-    sh './deploy.sh'
+    sh 'helm install siva-01 devops-project-0.1.0.tgz'
           }
        }
     } 
