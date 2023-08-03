@@ -1,0 +1,11 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('download code') {
+            steps {
+                git branch: 'main', credentialsId: 'github-credintials', url: 'https://github.com/shiva805504/devops-project.git'
+            }
+        }
+    }
+}
