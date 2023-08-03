@@ -1,0 +1,14 @@
+pipeline {
+    agent{
+stage('build'){
+        
+            steps {
+	    echo '----------Build Started---------'
+                sh 'mvn package'
+		echo '---------Build Completed-------'
+            }
+        }	}
+
+
+
+	}
