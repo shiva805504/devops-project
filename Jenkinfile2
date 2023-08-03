@@ -4,7 +4,7 @@ stages{
 stage('Build Code'){
         steps {
 	    echo '----------Build Started---------'
-              sh 'mvn package'
+               sh 'mvn clean deploy -Dmaven.test.skip=true'
 		echo '---------Build Completed-------'
             }
 	  }  
